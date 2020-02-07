@@ -7,45 +7,82 @@ using namespace std;
 int matrix[256][256];
 
 // Prototypes
-int aihaReadMatrix(int mat[][256], int m) {
-	int i = 0, j = 0;
+	// Matrix Setup
+int aihaPrintMatrix(int mat[][256], int m);
+int aihaReadMatrix(int mat[][256], int m);
 
-	//Inizialiting loop. Get the elements from the user.
-	for(i = 0; i < m; i++) {
-		for(j = 0; j < m; j++ ) {
-			cout << "Input the [" << i+1 << "][" << j+1 << "] element: ";
-			cin >> mat[i][j];
-		}
-	}
+	// Matrix Types
+int bmReflectiveMatrix( int matrix[][256], int m );
+int symmetricMatrix(int matrix[][256], int m);
+int nonSymmetricMatrix(int matrix[][256], int m);
+int transitiveMatrix(int matrix[][256], int m);
 
-    return 0;
-}
-
+// Function code.
+	// Matrix Setup
 int aihaPrintMatrix(int mat[][256], int m) {
+
 	int i = 0, j = 0;
 
-	cout << "The matrix: " << endl << endl;
+	cout << "The matrix (It only accepts 1 or 0 as an input): " << endl << endl;
 
-	//This are the nested loops that prints the matrix on screen with format (all elements are inside of [] so it looks more like a real matrix).
+	// This are the nested loops that prints the matrix on screen with format
+    // (all elements are inside of [] so it looks more like a real matrix)
 	for (i = 0; i < m; i++) {
-		cout << "\t[";
+
+		cout << setw(21) << "[";
 
 		for (j = 0; j < m; j++) {
-			if(j != (m - 1))
+			if(j != (m-1) )
 				cout << mat[i][j] << setw(12);
 			else cout << mat[i][j];
 		}
-
-		cout << "]\n" << endl;
+		cout << "]" << endl;
 	}
 
-    return 0;
+	return 0;
+}
+    // Matrix Print
+int aihaReadMatrix(int mat[][256], int m) {
+
+	int i = 0, j = 0;
+
+	// Inizialiting loop. Get the elements from the user. The matrix only accepts
+    // 1 or 0 as an element
+	for(i = 0; i < m; i++) {
+		for(j = 0; j < m; j++ ) {
+			// The input repeats itself as the input is different from 0 or 1
+			do {
+				// The matrix prints itself everytime there's a new input, so the
+                // user can see how it looks
+				cout << "\n\n\n\n\n\n";
+				aihaPrintMatrix(mat, m);
+				cout << endl << "Input the [" << i+1 << "][" << j+1 << "] element: ";
+				cin >> mat[i][j];
+
+				// If the element in (i, j) is neither 1 nor 0, set the element in by
+                // default (mat[i][j] = 0)
+				if(mat[i][j] < 0 || mat[i][j] > 1) {
+					mat[i][j] = 0;
+					// J decreases by one, so when the user presses the enter key, it
+                    // doesn't skip to the next spot in the matrix
+					// So he can write the same element
+					j--;
+				}
+			} while(mat[i][j] < 0 || mat[i][j] > 1);
+		}
+	}
+
+	cout << "\n\n\n\n\n\n";
+
+	return 0;
 }
 
-int bmReflectiveMatrix(int matrix[][256], int m){
+    // Matrix Reflective Type
+int bmReflectiveMatrix( int matrix[][256], int m ) {
+
     int counter = 0;
 
-    for(int i = 0; i < m; i++) {
+	for(int i = 0; i < m; i++) {
         for(int j = 0; j < m; j++) {
             if(i == j)
                 if(matrix[i][j] == 1) {
@@ -54,36 +91,41 @@ int bmReflectiveMatrix(int matrix[][256], int m){
         }
     }
 
-    if(counter == m) cout << "\n\nThe matrix is REFLECTIVE" << endl;
-    else cout << "\n\nThe matrix is NOT REFLECTIVE" << endl;
+    if(counter == m) cout << "\n\nThe matrix is REFLECTIVE." << endl;
+    else cout << "\n\nThe matrix is NOT REFLECTIVE." << endl;
 
     return 0;
 }
 
+    // Matrix Symmetric Type
 int symmetricMatrix(int matrix[][256], int m){
 
 
     return 0;
 }
 
+    // Matrix Non Symmetric Type
 int nonSymmetricMatrix(int matrix[][256], int m){
 
 
     return 0;
 }
 
+    // Matrix Transitive Type
 int transitiveMatrix(int matrix[][256], int m){
 
 
     return 0;
 }
 
-int main() {
+    // Main Function
+int main( void ) {
+
     // Declarations
 	int m = 0;
 
-    // Welcome
-    cout << "\nProgram to determine what type of array is entered. \n\n\tDiscrete Mathematics.\n\n";
+    // Welcome.
+    cout << "Program to determine what type of array is entered. \n\tDiscrete Mathematics.\n\n";
 
     // Get matrix from user
 	cout << "What's the matrix dimension? " << endl;
@@ -95,9 +137,11 @@ int main() {
 
     // Matrix Types
     bmReflectiveMatrix(matrix, m);
-    /*symmetricMatrix(matrix);
+    /*
+    symmetricMatrix(matrix);
     nonSymmetricMatrix(matrix);
-    transitiveMatrix(matrix);*/
+    transitiveMatrix(matrix);
+    */
 
     return 0;
 }
