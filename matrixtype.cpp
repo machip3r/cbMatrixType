@@ -26,7 +26,7 @@ int aihaPrintMatrix(int mat[][256], int m) {
 	cout << "The matrix (It only accepts 1 or 0 as an input): " << endl << endl;
 
 	// This are the nested loops that prints the matrix on screen with format
-    // (all elements are inside of [] so it looks more like a real matrix)
+    	// (all elements are inside of [] so it looks more like a real matrix)
 	for (i = 0; i < m; i++) {
 
 		cout << setw(21) << "[";
@@ -47,24 +47,24 @@ int aihaReadMatrix(int mat[][256], int m) {
 	int i = 0, j = 0;
 
 	// Inizialiting loop. Get the elements from the user. The matrix only accepts
-    // 1 or 0 as an element
+    	// 1 or 0 as an element
 	for(i = 0; i < m; i++) {
 		for(j = 0; j < m; j++ ) {
 			// The input repeats itself as the input is different from 0 or 1
 			do {
 				// The matrix prints itself everytime there's a new input, so the
-                // user can see how it looks
+                		// user can see how it looks
 				cout << "\n\n\n\n\n\n";
 				aihaPrintMatrix(mat, m);
 				cout << endl << "Input the [" << i+1 << "][" << j+1 << "] element: ";
 				cin >> mat[i][j];
 
 				// If the element in (i, j) is neither 1 nor 0, set the element in by
-                // default (mat[i][j] = 0)
+                		// default (mat[i][j] = 0)
 				if(mat[i][j] < 0 || mat[i][j] > 1) {
 					mat[i][j] = 0;
 					// J decreases by one, so when the user presses the enter key, it
-                    // doesn't skip to the next spot in the matrix
+                    			// doesn't skip to the next spot in the matrix
 					// So he can write the same element
 					j--;
 				}
